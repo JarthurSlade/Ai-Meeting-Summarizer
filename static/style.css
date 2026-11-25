@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #18151f;
+    color: #e8e4ed;
+}
+
+header {
+    background-color: #241d30;
+    padding: 25px 40px;
+    border-bottom: 2px solid #7654a8;
+}
+
+header h1 {
+    margin: 0;
+    color: #c3a5ed;
+    font-size: 28px;
+}
+
+header p {
+    color: #aaa1b5;
+    margin-bottom: 0;
+}
+
+main {
+    display: flex;
+    gap: 25px;
+    padding: 30px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+section {
+    flex: 1;
+    min-width: 0;
+    background-color: #241f2d;
+    padding: 25px;
+    border: 1px solid #40364d;
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 19px;
+    color: #c3a5ed;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 350px;
+    padding: 15px;
+    background-color: #19161f;
+    color: #e8e4ed;
+    border: 1px solid #51445f;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: 2px solid #9671c7;
+}
+
+button {
+    background-color: #7654a8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 18px;
+    margin-top: 15px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #9069c5;
+}
+
+#clearBtn, #copyBtn, #downloadBtn {
+    background-color: #40364d;
+}
+
+#clearBtn:hover, #copyBtn:hover, #downloadBtn:hover {
+    background-color: #59496b;
+}
+
+#summary, #decisions, #actionItems {
+    background-color: #19161f;
+    border: 1px solid #40364d;
+    border-radius: 6px;
+    padding: 15px;
+    min-height: 80px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+    main {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    header {
+        padding: 20px;
+    }
+}
