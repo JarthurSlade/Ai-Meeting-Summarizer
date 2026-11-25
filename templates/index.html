@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Meeting Summarizer</title>
+</head>
+<body>
+
+    <header>
+        <h1>AI Meeting Summarizer</h1>
+        <p>Turn meeting notes into organized summaries.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Meeting Notes</h2>
+
+            <textarea id="meetingNotes" rows="15"
+                placeholder="Paste your meeting notes here..."></textarea>
+
+            <button id="generateBtn">Generate Summary</button>
+            <button id="clearBtn">Clear</button>
+        </section>
+
+        <section>
+            <h2>Meeting Summary</h2>
+            <p id="summary">Your summary will appear here.</p>
+
+            <h2>Key Decisions</h2>
+            <div id="decisions"></div>
+
+            <h2>Action Items</h2>
+            <div id="actionItems"></div>
+
+            <button id="copyBtn">Copy Summary</button>
+            <button id="downloadBtn">Download Summary</button>
+        </section>
+    </main>
+
+</body>
+</html>
