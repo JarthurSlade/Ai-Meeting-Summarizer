@@ -8,25 +8,72 @@ const clearBtn = document.getElementById("clearBtn");
 const copyBtn = document.getElementById("copyBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// Temporary summary generation for testing
-generateBtn.addEventListener("click", function () {
+// Generate a meeting summary using AI
+generateBtn.addEventListener("click", async function () {
     if (notes.value.trim() === "") {
         alert("Please enter your meeting notes first.");
         return;
     }
 
-    summary.textContent = "AI integration has not been connected yet.";
-    decisions.textContent = "No decisions generated yet.";
-    actionItems.textContent = "No action items generated yet.";
-});
+    generateBtn.disabled = true;
+    clearBtn.disabled = true;
+    generateBtn.textContent = "Generating...";
 
-// Clear the input and results
-clearBtn.addEventListener("click", function () {
-    notes.value = "";
-    summary.textContent = "Your summary will appear here.";
+    summary.textContent = "Analyzing meeting notes...";
     decisions.textContent = "";
     actionItems.textContent = "";
+
+    try {
+        const response = await fetch("/summarize", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                notes: notes.value
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Request failed.");
+        }
+
+        summary.textContent = data.summary;
+        displayList(decisions, data.decisions);
+        displayList(actionItems, data.action_items);
+
+    } catch (error) {
+        summary.textContent = error.message;
+
+    } finally {
+        generateBtn.disabled = false;
+        clearBtn.disabled = false;
+        generateBtn.textContent = "Generate Summary";
+    }
 });
+
+function displayList(container, items) {
+    container.textContent = "";
+
+    if (!Array.isArray(items) || items.length === 0) {
+        container.textContent = "None identified.";
+        return;
+    }
+
+    const list = document.createElement("ul");
+
+    items.forEach(function (item) {
+        const li = document.createElement("li");
+        li.textContent = typeof item === "string"
+            ? item
+            : Object.values(item).join(" - ");
+        list.appendChild(li);
+    });
+
+    container.appendChild(list);
+}
 
 // Combine the results into one document
 function getSummaryText() {
